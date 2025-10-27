@@ -19,6 +19,15 @@
 	color: var(--color-text);
 }
 
+[data-theme='dark'] {
+	--color-bg-0: rgb(32, 32, 40);
+	--color-bg-1: hsl(220, 14%, 16%);
+	--color-bg-2: hsl(220, 14%, 12%);
+	--color-theme-1: #ff6b35;
+	--color-theme-2: #7dd3fc;
+	--color-text: rgba(255, 255, 255, 0.87);
+}
+
 body {
 	min-height: 100vh;
 	margin: 0;
