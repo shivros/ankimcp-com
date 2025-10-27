@@ -27,7 +27,7 @@
 
 <section class="features">
 	<div class="container">
-		<h2 class="mb-12 text-center text-3xl font-bold">Why AnkiMCP?</h2>
+		<h2 class="features-heading">Why AnkiMCP?</h2>
 		<div class="grid gap-8 md:grid-cols-3">
 			<div class="feature-card">
 				<Code class="mb-4 h-12 w-12 text-blue-600" />
@@ -186,13 +186,13 @@
 		background:
 			linear-gradient(
 				140deg,
-				color-mix(in srgb, var(--color-bg-1) 94%, #000 6%) 0%,
-				color-mix(in srgb, var(--color-bg-2) 88%, #000 12%) 55%,
-				color-mix(in srgb, var(--color-bg-2) 82%, #000 18%) 100%
+				color-mix(in srgb, var(--color-bg-1) 92%, transparent) 0%,
+				color-mix(in srgb, var(--color-bg-2) 88%, transparent) 55%,
+				color-mix(in srgb, var(--color-bg-2) 84%, transparent) 100%
 			),
 			radial-gradient(
-				120% 120% at 20% 15%,
-				color-mix(in srgb, var(--color-theme-1) 6%, transparent),
+				130% 120% at 22% 18%,
+				color-mix(in srgb, var(--color-theme-2) 10%, transparent),
 				transparent 65%
 			);
 	}
@@ -235,6 +235,33 @@
 	.features {
 		padding: 4rem 0;
 		background: var(--color-bg-1);
+	}
+
+	.features-heading {
+		position: relative;
+		display: block;
+		margin: 0 auto 3rem;
+		padding-bottom: 0.75rem;
+		font-size: clamp(2.1rem, 1.5vw + 1.9rem, 3rem);
+		font-weight: 700;
+		letter-spacing: -0.015em;
+		text-align: center;
+	}
+
+	.features-heading::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		bottom: 0;
+		transform: translateX(-50%);
+		width: clamp(120px, 22vw, 220px);
+		height: 0.25rem;
+		border-radius: 999px;
+		background: linear-gradient(
+			90deg,
+			color-mix(in srgb, var(--color-theme-1) 70%, transparent),
+			transparent 80%
+		);
 	}
 
 	.feature-card {

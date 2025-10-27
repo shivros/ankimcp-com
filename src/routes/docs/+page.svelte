@@ -587,6 +587,12 @@
 		color: var(--color-theme-1);
 	}
 
+	.security-features {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	}
+
 	.feature-comparison,
 	.method-card,
 	.host-config,
@@ -637,6 +643,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1.25rem;
+	}
+
+	.config-section + .config-section {
+		margin-top: 2.5rem;
 	}
 
 	.config-example {
