@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
+		"build:deps": "npm run build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -13,7 +14,9 @@
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run",
 		"format": "prettier --write .",
-		"lint": "prettier --check . && eslint ."
+		"format:check": "prettier --check .",
+		"lint": "eslint .",
+		"quality:ci": "npm run format:check && npm run build:deps && npm run lint && npm run check && npm run test -- --silent"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
