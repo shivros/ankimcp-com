@@ -437,324 +437,406 @@
 </div>
 
 <style>
-	.docs-container {
-		display: grid;
-		grid-template-columns: 250px 1fr;
-		min-height: 100vh;
-		gap: 2rem;
-		max-width: 1400px;
-		margin: 0 auto;
-		padding: 2rem;
-	}
+        .docs-container {
+                display: grid;
+                grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+                gap: clamp(1.5rem, 4vw, 3rem);
+                width: 100%;
+                max-width: min(1200px, 100%);
+                margin: 0 auto;
+                padding: clamp(1.5rem, 4vw, 3rem);
+                align-items: start;
+                box-sizing: border-box;
+        }
 
-	.docs-nav {
-		position: sticky;
-		top: 2rem;
-		height: fit-content;
-		background: var(--color-bg-1);
-		padding: 1.5rem;
-		border-radius: 0.75rem;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-	}
+        .docs-nav {
+                position: sticky;
+                top: clamp(1rem, 2vw, 2.5rem);
+                height: fit-content;
+                background: var(--surface-raised);
+                padding: 1.75rem;
+                border-radius: 1rem;
+                border: 1px solid var(--surface-border);
+                box-shadow: var(--shadow-soft);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+        }
 
-	.back-link {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		color: #6b7280;
-		text-decoration: none;
-		margin-bottom: 1rem;
-		font-size: 0.875rem;
-	}
+        .docs-nav h1 {
+                margin-bottom: 1.5rem;
+        }
 
-	.back-link:hover {
-		color: #374151;
-	}
+        .back-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: var(--text-muted);
+                text-decoration: none;
+                margin-bottom: 1rem;
+                font-size: 0.9rem;
+                font-weight: 500;
+                transition: color 0.2s ease, transform 0.2s ease;
+        }
 
-	.nav-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
+        .back-link:hover,
+        .back-link:focus-visible {
+                color: var(--color-theme-1);
+                transform: translateX(-4px);
+        }
 
-	.nav-list li {
-		margin-bottom: 0.5rem;
-	}
+        .nav-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 0.35rem;
+        }
 
-	.nav-list a {
-		color: #6b7280;
-		text-decoration: none;
-		padding: 0.25rem 0;
-		display: block;
-		border-radius: 0.25rem;
-		transition: color 0.2s;
-	}
+        .nav-list a {
+                color: var(--text-muted);
+                text-decoration: none;
+                padding: 0.35rem 0.6rem;
+                border-radius: 0.5rem;
+                transition: color 0.2s ease, background-color 0.2s ease;
+                font-weight: 500;
+        }
 
-	.nav-list a:hover {
-		color: #3b82f6;
-	}
+        .nav-list a:hover,
+        .nav-list a:focus-visible {
+                color: var(--color-theme-1);
+                background: var(--surface-muted);
+        }
 
-	.docs-content {
-		max-width: none;
-	}
+        .docs-content {
+                min-width: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 3rem;
+        }
 
-	.section {
-		margin-bottom: 3rem;
-		padding-bottom: 2rem;
-		border-bottom: 1px solid #e5e7eb;
-	}
+        .section {
+                display: flex;
+                flex-direction: column;
+                gap: 1.25rem;
+                padding-bottom: 2.5rem;
+                border-bottom: 1px solid var(--surface-border);
+                scroll-margin-top: 8rem;
+        }
 
-	.section:last-child {
-		border-bottom: none;
-	}
+        .section:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+        }
 
-	.feature-comparison {
-		background: var(--color-bg-1);
-		padding: 1.5rem;
-		border-radius: 0.75rem;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-	}
+        .section h2 {
+                font-size: clamp(1.75rem, 2vw, 2.25rem);
+                font-weight: 700;
+        }
 
-	.comparison-card {
-		background: var(--color-bg-2);
-		padding: 1.5rem;
-		border-radius: 0.5rem;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-		border: 1px solid rgba(255, 255, 255, 0.1);
-	}
+        .section h3 {
+                font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+                font-weight: 600;
+        }
 
-	.installation-methods {
-		display: grid;
-		gap: 1.5rem;
-	}
+        .section h4 {
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--text-muted);
+        }
 
-	.method-card {
-		background: var(--color-bg-1);
-		padding: 1.5rem;
-		border-radius: 0.75rem;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-	}
+        .feature-comparison {
+                background: var(--surface-raised);
+                padding: 1.75rem;
+                border-radius: 1rem;
+                border: 1px solid var(--surface-border);
+                box-shadow: var(--shadow-soft);
+        }
 
-	.addon-code {
-		background: #3b82f6;
-		color: white;
-		padding: 0.25rem 0.5rem;
-		border-radius: 0.25rem;
-		font-weight: 600;
-	}
+        .comparison-card {
+                background: var(--surface-muted);
+                padding: 1.5rem;
+                border-radius: 0.85rem;
+                border: 1px solid var(--surface-border);
+                box-shadow: var(--shadow-soft);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
 
-	.note {
-		background: #fef3c7;
-		border: 1px solid #f59e0b;
-		padding: 1rem;
-		border-radius: 0.5rem;
-		margin-top: 1rem;
-	}
+        .comparison-card:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-medium);
+        }
 
-	.config-section {
-		margin-bottom: 2rem;
-	}
+        .installation-methods {
+                display: grid;
+                gap: 1.5rem;
+        }
 
-	.config-example,
-	.config-code {
-		background: #1f2937;
-		color: #f9fafb;
-		padding: 1rem;
-		border-radius: 0.5rem;
-		overflow-x: auto;
-		font-family: 'Courier New', monospace;
-		font-size: 0.875rem;
-	}
+        .method-card {
+                background: var(--surface-raised);
+                border: 1px solid var(--surface-border);
+                border-radius: 1rem;
+                padding: 1.5rem;
+                box-shadow: var(--shadow-soft);
+        }
 
-	.host-configs {
-		display: grid;
-		gap: 1rem;
-	}
+        .addon-code {
+                background: var(--color-theme-2);
+                color: var(--tag-text-on-accent);
+                padding: 0.25rem 0.6rem;
+                border-radius: 0.4rem;
+                font-weight: 600;
+                letter-spacing: 0.02em;
+        }
 
-	.host-config {
-		background: #f9fafb;
-		padding: 1rem;
-		border-radius: 0.5rem;
-		border: 1px solid #e5e7eb;
-	}
+        .note {
+                background: var(--accent-warm-bg);
+                border: 1px solid var(--accent-warm-border);
+                padding: 1rem;
+                border-radius: 0.75rem;
+        }
 
-	.capabilities-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-		gap: 1.5rem;
-	}
+        .config-section {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+        }
 
-	.capability-card {
-		background: white;
-		padding: 1.5rem;
-		border-radius: 0.75rem;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-		border: 1px solid #e5e7eb;
-	}
+        .config-example,
+        .config-code {
+                background: var(--code-block-bg);
+                color: var(--code-block-text);
+                border: 1px solid var(--code-border);
+                border-radius: 0.85rem;
+                padding: 1.25rem;
+                box-shadow: var(--shadow-soft);
+                overflow-x: auto;
+                font-family: var(--font-mono);
+                font-size: 0.95rem;
+        }
 
-	.capability-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
+        .config-code code {
+                background: transparent;
+                color: inherit;
+                padding: 0;
+                border: 0;
+        }
 
-	.capability-list li {
-		padding: 0.5rem 0;
-		border-bottom: 1px solid #f3f4f6;
-		font-size: 0.875rem;
-	}
+        .host-configs {
+                display: grid;
+                gap: 1.25rem;
+        }
 
-	.capability-list li:last-child {
-		border-bottom: none;
-	}
+        .host-config {
+                background: var(--surface-raised);
+                border: 1px solid var(--surface-border);
+                border-radius: 1rem;
+                padding: 1.5rem;
+                box-shadow: var(--shadow-soft);
+        }
 
-	.capability-list code {
-		background: #e5e7eb;
-		padding: 0.125rem 0.375rem;
-		border-radius: 0.25rem;
-		font-size: 0.75rem;
-		font-weight: 600;
-	}
+        .capabilities-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 1.5rem;
+        }
 
-	.api-reference {
-		display: grid;
-		gap: 2rem;
-	}
+        .capability-card {
+                background: var(--surface-raised);
+                border: 1px solid var(--surface-border);
+                border-radius: 1rem;
+                padding: 1.5rem;
+                box-shadow: var(--shadow-soft);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
 
-	.api-method {
-		background: #f9fafb;
-		padding: 1.5rem;
-		border-radius: 0.75rem;
-		border: 1px solid #e5e7eb;
-	}
+        .capability-card:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-medium);
+        }
 
-	.api-method-name {
-		font-family: 'Courier New', monospace;
-		font-size: 1.25rem;
-		font-weight: bold;
-		color: #3b82f6;
-		margin-bottom: 0.5rem;
-	}
+        .capability-list {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+        }
 
-	.api-description {
-		color: #6b7280;
-		margin-bottom: 1rem;
-	}
+        .capability-list li {
+                padding: 0.6rem 0;
+                border-bottom: 1px solid var(--surface-border);
+                font-size: 0.95rem;
+        }
 
-	.api-parameters h4,
-	.api-example h4 {
-		font-weight: 600;
-		margin-bottom: 0.5rem;
-		font-size: 0.875rem;
-	}
+        .capability-list li:last-child {
+                border-bottom: none;
+        }
 
-	.api-parameters ul {
-		list-style: none;
-		padding: 0;
-		margin-bottom: 1rem;
-	}
+        .capability-list code {
+                font-size: 0.85rem;
+                font-weight: 600;
+        }
 
-	.api-parameters li {
-		padding: 0.25rem 0;
-		font-size: 0.875rem;
-	}
+        .api-reference {
+                display: grid;
+                gap: 1.5rem;
+        }
 
-	.api-code {
-		background: #1f2937;
-		color: #f9fafb;
-		padding: 1rem;
-		border-radius: 0.5rem;
-		overflow-x: auto;
-		font-family: 'Courier New', monospace;
-		font-size: 0.75rem;
-	}
+        .api-method {
+                background: var(--surface-raised);
+                border: 1px solid var(--surface-border);
+                border-radius: 1rem;
+                padding: 1.5rem;
+                box-shadow: var(--shadow-soft);
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+        }
 
-	.security-features {
-		display: grid;
-		gap: 1.5rem;
-	}
+        .api-method-name {
+                font-size: 1.15rem;
+                font-weight: 600;
+        }
 
-	.security-feature {
-		background: #f9fafb;
-		padding: 1.5rem;
-		border-radius: 0.75rem;
-		border: 1px solid #e5e7eb;
-	}
+        .api-description {
+                color: var(--text-muted);
+                margin-bottom: 1rem;
+        }
 
-	.security-code {
-		background: #1f2937;
-		color: #f9fafb;
-		padding: 1rem;
-		border-radius: 0.5rem;
-		font-family: 'Courier New', monospace;
-		font-size: 0.75rem;
-		margin: 0.5rem 0;
-	}
+        .api-parameters h4,
+        .api-example h4 {
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+                font-size: 0.95rem;
+                color: var(--text-muted);
+        }
 
-	.troubleshooting-guide {
-		display: grid;
-		gap: 1.5rem;
-	}
+        .api-parameters ul {
+                list-style: none;
+                padding: 0;
+                margin: 0 0 1rem;
+        }
 
-	.issue {
-		background: #fef2f2;
-		border: 1px solid #fecaca;
-		border-radius: 0.75rem;
-		overflow: hidden;
-	}
+        .api-parameters li {
+                padding: 0.35rem 0;
+                font-size: 0.95rem;
+        }
 
-	.issue-title {
-		background: #fee2e2;
-		padding: 1rem 1.5rem;
-		margin: 0;
-		font-size: 1.125rem;
-		font-weight: 600;
-		color: #dc2626;
-	}
+        .api-code {
+                background: var(--code-block-bg);
+                color: var(--code-block-text);
+                border: 1px solid var(--code-border);
+                border-radius: 0.85rem;
+                padding: 1.25rem;
+                font-family: var(--font-mono);
+                font-size: 0.9rem;
+                box-shadow: var(--shadow-soft);
+        }
 
-	.issue-content {
-		padding: 1.5rem;
-	}
+        .security-features,
+        .troubleshooting-guide {
+                display: grid;
+                gap: 1.5rem;
+        }
 
-	.help-section {
-		background: #eff6ff;
-		border: 1px solid #bfdbfe;
-		padding: 1.5rem;
-		border-radius: 0.75rem;
-		margin-top: 1.5rem;
-	}
+        .security-feature {
+                background: var(--surface-raised);
+                border: 1px solid var(--surface-border);
+                border-radius: 1rem;
+                padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+                box-shadow: var(--shadow-soft);
+                border-left: 4px solid var(--color-theme-2);
+        }
 
-	.link {
-		color: #3b82f6;
-		text-decoration: none;
-	}
+        .security-code {
+                background: var(--code-block-bg);
+                color: var(--code-block-text);
+                border: 1px solid var(--code-border);
+                border-radius: 0.85rem;
+                padding: 1.1rem;
+                font-family: var(--font-mono);
+                font-size: 0.9rem;
+                box-shadow: var(--shadow-soft);
+        }
 
-	.link:hover {
-		text-decoration: underline;
-	}
+        .issue {
+                background: var(--accent-danger-bg);
+                border: 1px solid var(--accent-danger-border);
+                border-radius: 1rem;
+                overflow: hidden;
+                box-shadow: var(--shadow-soft);
+        }
 
-	code {
-		background: #e5e7eb;
-		padding: 0.125rem 0.375rem;
-		border-radius: 0.25rem;
-		font-family: 'Courier New', monospace;
-		font-size: 0.875em;
-	}
+        .issue-title {
+                padding: 1rem 1.5rem 0.75rem;
+                margin: 0;
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: var(--accent-danger-text);
+                border-bottom: 1px solid var(--accent-danger-border);
+        }
 
-	@media (max-width: 768px) {
-		.docs-container {
-			grid-template-columns: 1fr;
-			gap: 1rem;
-			padding: 1rem;
-		}
+        .issue-content {
+                padding: 1.25rem 1.5rem 1.5rem;
+        }
 
-		.docs-nav {
-			position: relative;
-			top: auto;
-		}
+        .help-section {
+                background: var(--accent-info-bg);
+                border: 1px solid var(--accent-info-border);
+                border-radius: 1rem;
+                padding: 1.5rem;
+                box-shadow: var(--shadow-soft);
+        }
 
-		.capabilities-grid {
-			grid-template-columns: 1fr;
-		}
-	}
+        .link {
+                color: var(--color-theme-2);
+        }
+
+        .link:hover,
+        .link:focus-visible {
+                color: var(--color-theme-1);
+        }
+
+        .config-example code,
+        .api-code code,
+        .security-code code {
+                background: transparent;
+                color: inherit;
+                padding: 0;
+                border: 0;
+        }
+
+        @media (max-width: 1024px) {
+                .docs-container {
+                        grid-template-columns: 1fr;
+                        padding: clamp(1.25rem, 5vw, 2rem);
+                }
+
+                .docs-nav {
+                        position: relative;
+                        top: auto;
+                        display: grid;
+                        gap: 1rem;
+                }
+
+                .docs-content {
+                        gap: 2.5rem;
+                }
+        }
+
+        @media (max-width: 640px) {
+                .feature-comparison,
+                .method-card,
+                .config-example,
+                .config-code,
+                .api-method,
+                .security-feature,
+                .issue,
+                .help-section {
+                        padding: 1.25rem;
+                }
+
+                .api-method {
+                        gap: 0.75rem;
+                }
+        }
 </style>
