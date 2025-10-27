@@ -1,4 +1,5 @@
 <script lang="ts">
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { Settings, Database, Shield, Zap, ArrowLeft } from 'lucide-svelte';
 </script>
 
@@ -16,7 +17,7 @@
 			<ArrowLeft class="h-4 w-4" />
 			Back to Home
 		</a>
-		<h1 class="mb-6 text-2xl font-bold">Documentation</h1>
+		<h1 class="docs-nav-title">Documentation</h1>
 		<ul class="nav-list">
 			<li><a href="#overview">Overview</a></li>
 			<li><a href="#installation">Installation</a></li>
@@ -30,7 +31,7 @@
 
 	<main class="docs-content">
 		<section id="overview" class="section">
-			<h2 class="mb-4 text-3xl font-bold">Overview</h2>
+			<h2 class="section-heading">Overview</h2>
 			<p class="mb-4">
 				AnkiMCP is an Anki addon that bridges your flashcard collection with AI assistants through
 				the Model Context Protocol (MCP). Unlike traditional REST APIs, MCP provides a standardized
@@ -64,7 +65,7 @@
 		</section>
 
 		<section id="installation" class="section">
-			<h2 class="mb-4 text-3xl font-bold">Installation</h2>
+			<h2 class="section-heading">Installation</h2>
 
 			<div class="installation-methods">
 				<div class="method-card">
@@ -109,7 +110,7 @@
 		</section>
 
 		<section id="configuration" class="section">
-			<h2 class="mb-4 text-3xl font-bold">Configuration</h2>
+			<h2 class="section-heading">Configuration</h2>
 
 			<div class="config-section">
 				<h3 class="mb-3 text-xl font-semibold">
@@ -125,8 +126,8 @@
 
 				<div class="config-example">
 					<h4 class="mb-2 font-semibold">Configuration Options</h4>
-					<pre class="config-code"><code
-							>{`{
+					<CodeBlock language="JSON" label="ankimcp.json">
+						{`{
   "host": "localhost",
   "port": 8765,
   "global_permissions": {
@@ -142,8 +143,8 @@
     }
   },
   "protected_decks": ["ImportantDeck", "ExamPrep"]
-}`}</code
-						></pre>
+}`}
+					</CodeBlock>
 				</div>
 			</div>
 
@@ -157,8 +158,8 @@
 						<p class="mb-2 text-sm">
 							Edit <code>~/.config/claude-desktop/claude_desktop_config.json</code>:
 						</p>
-						<pre class="config-code"><code
-								>{`{
+						<CodeBlock language="JSON" label="claude_desktop_config.json">
+							{`{
   "mcpServers": {
     "ankimcp": {
       "command": "python",
@@ -169,8 +170,8 @@
       }
     }
   }
-}`}</code
-							></pre>
+}`}
+						</CodeBlock>
 					</div>
 
 					<div class="host-config">
@@ -187,8 +188,8 @@
 		</section>
 
 		<section id="capabilities" class="section">
-			<h2 class="mb-4 text-3xl font-bold">
-				<Zap class="mr-2 inline h-7 w-7" />
+			<h2 class="section-heading">
+				<Zap class="section-heading-icon" />
 				Capabilities
 			</h2>
 			<p class="mb-6">
@@ -244,7 +245,7 @@
 		</section>
 
 		<section id="api-reference" class="section">
-			<h2 class="mb-4 text-3xl font-bold">API Reference</h2>
+			<h2 class="section-heading">API Reference</h2>
 			<p class="mb-6">Detailed reference for each MCP tool available in AnkiMCP:</p>
 
 			<div class="api-reference">
@@ -255,8 +256,8 @@
 					</p>
 					<div class="api-example">
 						<h4>Response Example:</h4>
-						<pre class="api-code"><code
-								>{`[
+						<CodeBlock language="JSON" label="list_decks">
+							{`[
   {
     "id": 1234567890,
     "name": "Japanese::Vocabulary",
@@ -264,8 +265,8 @@
     "reviewCount": 12,
     "totalCount": 892
   }
-]`}</code
-							></pre>
+]`}
+						</CodeBlock>
 					</div>
 				</div>
 
@@ -283,8 +284,8 @@
 					</div>
 					<div class="api-example">
 						<h4>Response Example:</h4>
-						<pre class="api-code"><code
-								>{`[
+						<CodeBlock language="JSON" label="search_notes">
+							{`[
   {
     "noteId": 1234567890,
     "fields": {
@@ -294,8 +295,8 @@
     "tags": ["vocabulary", "greetings"],
     "modelName": "Basic"
   }
-]`}</code
-							></pre>
+]`}
+						</CodeBlock>
 					</div>
 				</div>
 
@@ -316,8 +317,8 @@
 		</section>
 
 		<section id="security" class="section">
-			<h2 class="mb-4 text-3xl font-bold">
-				<Shield class="mr-2 inline h-7 w-7" />
+			<h2 class="section-heading">
+				<Shield class="section-heading-icon" />
 				Security & Permissions
 			</h2>
 			<p class="mb-6">
@@ -338,8 +339,8 @@
 				<div class="security-feature">
 					<h3 class="mb-2 text-lg font-semibold">Deck-Specific Controls</h3>
 					<p class="mb-3">Override permissions for individual decks:</p>
-					<pre class="security-code"><code
-							>{`"deck_permissions": {
+					<CodeBlock language="JSON" label="deck_permissions" allowCopy={false}>
+						{`"deck_permissions": {
   "PersonalDiary": {
     "read": false,    // Completely hidden
     "write": false,
@@ -350,20 +351,20 @@
     "write": false,
     "delete": false
   }
-}`}</code
-						></pre>
+}`}
+					</CodeBlock>
 				</div>
 
 				<div class="security-feature">
 					<h3 class="mb-2 text-lg font-semibold">Protected Decks</h3>
 					<p class="mb-3">Add an extra layer of protection against accidental deletion:</p>
-					<pre class="security-code"><code
-							>"protected_decks": [
+					<CodeBlock language="JSON" label="protected_decks" allowCopy={false}>
+						{`"protected_decks": [
   "MedicalSchool",
   "PhD Research",
   "CertificationExam"
-]</code
-						></pre>
+]`}
+					</CodeBlock>
 					<p class="text-sm text-gray-600">
 						Protected decks cannot be deleted even if delete permissions are enabled.
 					</p>
@@ -372,7 +373,7 @@
 		</section>
 
 		<section id="troubleshooting" class="section">
-			<h2 class="mb-4 text-3xl font-bold">Troubleshooting</h2>
+			<h2 class="section-heading">Troubleshooting</h2>
 
 			<div class="troubleshooting-guide">
 				<div class="issue">
@@ -444,6 +445,10 @@
 		--docs-border: color-mix(in srgb, var(--color-text) 12%, transparent);
 		--docs-border-strong: color-mix(in srgb, var(--color-text) 16%, transparent);
 		--docs-muted: color-mix(in srgb, var(--color-text) 70%, transparent);
+		--code-surface: color-mix(in srgb, var(--docs-surface) 96%, transparent);
+		--code-border: var(--docs-border-strong);
+		--code-header: color-mix(in srgb, var(--docs-surface-elevated) 94%, transparent);
+		--code-accent: var(--color-theme-1);
 		display: grid;
 		grid-template-columns: minmax(0, 260px) 1fr;
 		gap: 2rem;
@@ -459,6 +464,10 @@
 		--docs-border: color-mix(in srgb, var(--color-text) 18%, transparent);
 		--docs-border-strong: color-mix(in srgb, var(--color-text) 24%, transparent);
 		--docs-muted: color-mix(in srgb, var(--color-text) 65%, transparent);
+		--code-surface: color-mix(in srgb, var(--docs-surface) 90%, #000 10%);
+		--code-border: color-mix(in srgb, var(--color-text) 28%, transparent);
+		--code-header: color-mix(in srgb, var(--docs-surface-elevated) 88%, #000 12%);
+		--code-accent: color-mix(in srgb, var(--color-theme-2) 60%, var(--color-theme-1));
 	}
 
 	.docs-nav {
@@ -476,6 +485,16 @@
 
 	:global([data-theme='dark']) .docs-nav {
 		box-shadow: 0 18px 45px color-mix(in srgb, #000 32%, transparent);
+	}
+
+	.docs-nav-title {
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: color-mix(in srgb, var(--color-text) 94%, transparent);
+		margin: 0;
+		line-height: 1.25;
+		text-wrap: balance;
+		overflow-wrap: anywhere;
 	}
 
 	.back-link {
@@ -534,6 +553,38 @@
 
 	.section:last-child {
 		border-bottom: none;
+	}
+
+	.section-heading {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		font-size: clamp(1.9rem, 2vw + 1.3rem, 2.4rem);
+		font-weight: 700;
+		margin: 0 0 1.75rem 0;
+		letter-spacing: -0.01em;
+		color: color-mix(in srgb, var(--color-text) 92%, var(--color-theme-1) 8%);
+	}
+
+	.section-heading::after {
+		content: '';
+		flex: 1;
+		height: 2px;
+		background: linear-gradient(
+			to right,
+			color-mix(in srgb, var(--color-theme-1) 55%, transparent),
+			transparent
+		);
+		border-radius: 999px;
+		margin-left: 1rem;
+		min-width: 3rem;
+	}
+
+	.section-heading-icon {
+		width: 1.85rem;
+		height: 1.85rem;
+		flex-shrink: 0;
+		color: var(--color-theme-1);
 	}
 
 	.feature-comparison,
@@ -595,18 +646,6 @@
 		padding: 1.25rem;
 	}
 
-	.config-code,
-	.api-code,
-	.security-code {
-		background: var(--docs-code-surface);
-		color: var(--color-text);
-		border: 1px solid var(--docs-border-strong);
-		border-radius: 0.75rem;
-		font-family: var(--font-mono);
-		font-size: 0.85rem;
-		margin: 0;
-	}
-
 	.host-configs {
 		display: grid;
 		gap: 1.25rem;
@@ -614,8 +653,8 @@
 
 	.capabilities-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 		gap: 1.5rem;
+		grid-template-columns: minmax(0, 1fr);
 	}
 
 	.capability-card {
@@ -688,10 +727,6 @@
 		color: var(--docs-muted);
 	}
 
-	.security-code {
-		margin: 0.75rem 0;
-	}
-
 	.troubleshooting-guide {
 		display: grid;
 		gap: 1.5rem;
@@ -745,6 +780,12 @@
 		font-size: 0.9em;
 	}
 
+	@media (min-width: 900px) {
+		.capabilities-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
 	@media (max-width: 1100px) {
 		.docs-container {
 			grid-template-columns: minmax(0, 220px) 1fr;
@@ -776,6 +817,17 @@
 		.capabilities-grid,
 		.installation-methods {
 			grid-template-columns: 1fr;
+		}
+
+		.section-heading {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.5rem;
+		}
+
+		.section-heading::after {
+			margin-left: 0;
+			width: 100%;
 		}
 	}
 </style>

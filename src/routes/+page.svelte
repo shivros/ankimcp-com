@@ -1,4 +1,5 @@
 <script lang="ts">
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { CheckCircle, Download, Code, Shield } from 'lucide-svelte';
 </script>
 
@@ -103,8 +104,8 @@
 					<div class="mb-4 rounded-lg bg-gray-50 p-4">
 						<h4 class="mb-2 font-semibold">For Claude Desktop</h4>
 						<p class="mb-2">Edit your Claude Desktop config:</p>
-						<pre class="overflow-x-auto rounded bg-gray-900 p-4 text-gray-100"><code
-								>{`{
+						<CodeBlock language="JSON" label="claude_desktop_config.json">
+							{`{
   "mcpServers": {
     "ankimcp": {
       "command": "python",
@@ -115,8 +116,8 @@
       }
     }
   }
-}`}</code
-							></pre>
+}`}
+						</CodeBlock>
 					</div>
 				</div>
 			</div>
@@ -167,7 +168,33 @@
 <style>
 	.hero {
 		padding: 4rem 0;
-		background: linear-gradient(to bottom, var(--color-bg-1), var(--color-bg-2));
+		background:
+			linear-gradient(
+				135deg,
+				color-mix(in srgb, var(--color-bg-1) 96%, transparent) 0%,
+				color-mix(in srgb, var(--color-bg-2) 90%, transparent) 60%,
+				color-mix(in srgb, var(--color-bg-2) 86%, transparent) 100%
+			),
+			radial-gradient(
+				120% 120% at 15% 10%,
+				color-mix(in srgb, var(--color-theme-1) 6%, transparent),
+				transparent 60%
+			);
+	}
+
+	:global([data-theme='dark']) .hero {
+		background:
+			linear-gradient(
+				140deg,
+				color-mix(in srgb, var(--color-bg-1) 94%, #000 6%) 0%,
+				color-mix(in srgb, var(--color-bg-2) 88%, #000 12%) 55%,
+				color-mix(in srgb, var(--color-bg-2) 82%, #000 18%) 100%
+			),
+			radial-gradient(
+				120% 120% at 20% 15%,
+				color-mix(in srgb, var(--color-theme-1) 6%, transparent),
+				transparent 65%
+			);
 	}
 
 	.container {
