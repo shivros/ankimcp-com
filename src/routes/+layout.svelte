@@ -47,13 +47,14 @@
 	}
 
 	footer {
-		background: var(--color-bg-1);
-		border-top: 1px solid #e5e7eb;
+		background: color-mix(in srgb, var(--color-bg-1) 92%, transparent);
+		border-top: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
 		padding: 2rem 0 1rem;
 	}
 
 	:global([data-theme='dark']) footer {
-		border-top-color: #374151;
+		background: color-mix(in srgb, var(--color-bg-1) 86%, #000 14%);
+		border-top-color: color-mix(in srgb, var(--color-text) 18%, transparent);
 	}
 
 	.footer-content {
@@ -66,21 +67,21 @@
 	}
 
 	.footer-section h3 {
-		color: #3b82f6;
+		color: var(--color-theme-1);
 		font-size: 1.25rem;
 		font-weight: bold;
 		margin: 0 0 0.5rem 0;
 	}
 
 	.footer-section h4 {
-		color: #374151;
+		color: color-mix(in srgb, var(--color-text) 75%, transparent);
 		font-size: 1rem;
 		font-weight: 600;
 		margin: 0 0 0.75rem 0;
 	}
 
 	.footer-section p {
-		color: #6b7280;
+		color: color-mix(in srgb, var(--color-text) 65%, transparent);
 		margin: 0;
 	}
 
@@ -95,25 +96,25 @@
 	}
 
 	.footer-section a {
-		color: #6b7280;
+		color: color-mix(in srgb, var(--color-text) 65%, transparent);
 		text-decoration: none;
 		transition: color 0.2s;
 	}
 
 	.footer-section a:hover {
-		color: #3b82f6;
+		color: var(--color-theme-1);
 	}
 
 	.footer-bottom {
 		max-width: 1200px;
 		margin: 2rem auto 0;
 		padding: 1rem 2rem 0;
-		border-top: 1px solid #e5e7eb;
+		border-top: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
 		text-align: center;
 	}
 
 	.footer-bottom p {
-		color: #6b7280;
+		color: color-mix(in srgb, var(--color-text) 60%, transparent);
 		font-size: 0.875rem;
 		margin: 0;
 	}

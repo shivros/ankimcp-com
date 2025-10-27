@@ -1,4 +1,5 @@
 <script lang="ts">
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { CheckCircle, Download, Code, Shield } from 'lucide-svelte';
 </script>
 
@@ -26,7 +27,7 @@
 
 <section class="features">
 	<div class="container">
-		<h2 class="mb-12 text-center text-3xl font-bold">Why AnkiMCP?</h2>
+		<h2 class="features-heading">Why AnkiMCP?</h2>
 		<div class="grid gap-8 md:grid-cols-3">
 			<div class="feature-card">
 				<Code class="mb-4 h-12 w-12 text-blue-600" />
@@ -103,8 +104,8 @@
 					<div class="mb-4 rounded-lg bg-gray-50 p-4">
 						<h4 class="mb-2 font-semibold">For Claude Desktop</h4>
 						<p class="mb-2">Edit your Claude Desktop config:</p>
-						<pre class="overflow-x-auto rounded bg-gray-900 p-4 text-gray-100"><code
-								>{`{
+						<CodeBlock language="JSON" label="claude_desktop_config.json">
+							{`{
   "mcpServers": {
     "ankimcp": {
       "command": "python",
@@ -115,8 +116,8 @@
       }
     }
   }
-}`}</code
-							></pre>
+}`}
+						</CodeBlock>
 					</div>
 				</div>
 			</div>
@@ -167,7 +168,33 @@
 <style>
 	.hero {
 		padding: 4rem 0;
-		background: linear-gradient(to bottom, var(--color-bg-1), var(--color-bg-2));
+		background:
+			linear-gradient(
+				135deg,
+				color-mix(in srgb, var(--color-bg-1) 96%, transparent) 0%,
+				color-mix(in srgb, var(--color-bg-2) 90%, transparent) 60%,
+				color-mix(in srgb, var(--color-bg-2) 86%, transparent) 100%
+			),
+			radial-gradient(
+				120% 120% at 15% 10%,
+				color-mix(in srgb, var(--color-theme-1) 6%, transparent),
+				transparent 60%
+			);
+	}
+
+	:global([data-theme='dark']) .hero {
+		background:
+			linear-gradient(
+				140deg,
+				color-mix(in srgb, var(--color-bg-1) 92%, transparent) 0%,
+				color-mix(in srgb, var(--color-bg-2) 88%, transparent) 55%,
+				color-mix(in srgb, var(--color-bg-2) 84%, transparent) 100%
+			),
+			radial-gradient(
+				130% 120% at 22% 18%,
+				color-mix(in srgb, var(--color-theme-2) 10%, transparent),
+				transparent 65%
+			);
 	}
 
 	.container {
@@ -208,6 +235,33 @@
 	.features {
 		padding: 4rem 0;
 		background: var(--color-bg-1);
+	}
+
+	.features-heading {
+		position: relative;
+		display: block;
+		margin: 0 auto 3rem;
+		padding-bottom: 0.75rem;
+		font-size: clamp(2.1rem, 1.5vw + 1.9rem, 3rem);
+		font-weight: 700;
+		letter-spacing: -0.015em;
+		text-align: center;
+	}
+
+	.features-heading::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		bottom: 0;
+		transform: translateX(-50%);
+		width: clamp(120px, 22vw, 220px);
+		height: 0.25rem;
+		border-radius: 999px;
+		background: linear-gradient(
+			90deg,
+			color-mix(in srgb, var(--color-theme-1) 70%, transparent),
+			transparent 80%
+		);
 	}
 
 	.feature-card {

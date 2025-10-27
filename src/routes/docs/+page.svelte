@@ -1,4 +1,5 @@
 <script lang="ts">
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import { Settings, Database, Shield, Zap, ArrowLeft } from 'lucide-svelte';
 </script>
 
@@ -16,7 +17,7 @@
 			<ArrowLeft class="h-4 w-4" />
 			Back to Home
 		</a>
-		<h1 class="mb-6 text-2xl font-bold">Documentation</h1>
+		<h1 class="docs-nav-title">Documentation</h1>
 		<ul class="nav-list">
 			<li><a href="#overview">Overview</a></li>
 			<li><a href="#installation">Installation</a></li>
@@ -30,7 +31,7 @@
 
 	<main class="docs-content">
 		<section id="overview" class="section">
-			<h2 class="mb-4 text-3xl font-bold">Overview</h2>
+			<h2 class="section-heading">Overview</h2>
 			<p class="mb-4">
 				AnkiMCP is an Anki addon that bridges your flashcard collection with AI assistants through
 				the Model Context Protocol (MCP). Unlike traditional REST APIs, MCP provides a standardized
@@ -64,7 +65,7 @@
 		</section>
 
 		<section id="installation" class="section">
-			<h2 class="mb-4 text-3xl font-bold">Installation</h2>
+			<h2 class="section-heading">Installation</h2>
 
 			<div class="installation-methods">
 				<div class="method-card">
@@ -109,7 +110,7 @@
 		</section>
 
 		<section id="configuration" class="section">
-			<h2 class="mb-4 text-3xl font-bold">Configuration</h2>
+			<h2 class="section-heading">Configuration</h2>
 
 			<div class="config-section">
 				<h3 class="mb-3 text-xl font-semibold">
@@ -125,8 +126,8 @@
 
 				<div class="config-example">
 					<h4 class="mb-2 font-semibold">Configuration Options</h4>
-					<pre class="config-code"><code
-							>{`{
+					<CodeBlock language="JSON" label="ankimcp.json">
+						{`{
   "host": "localhost",
   "port": 8765,
   "global_permissions": {
@@ -142,8 +143,8 @@
     }
   },
   "protected_decks": ["ImportantDeck", "ExamPrep"]
-}`}</code
-						></pre>
+}`}
+					</CodeBlock>
 				</div>
 			</div>
 
@@ -157,8 +158,8 @@
 						<p class="mb-2 text-sm">
 							Edit <code>~/.config/claude-desktop/claude_desktop_config.json</code>:
 						</p>
-						<pre class="config-code"><code
-								>{`{
+						<CodeBlock language="JSON" label="claude_desktop_config.json">
+							{`{
   "mcpServers": {
     "ankimcp": {
       "command": "python",
@@ -169,8 +170,8 @@
       }
     }
   }
-}`}</code
-							></pre>
+}`}
+						</CodeBlock>
 					</div>
 
 					<div class="host-config">
@@ -187,8 +188,8 @@
 		</section>
 
 		<section id="capabilities" class="section">
-			<h2 class="mb-4 text-3xl font-bold">
-				<Zap class="mr-2 inline h-7 w-7" />
+			<h2 class="section-heading">
+				<Zap class="section-heading-icon" />
 				Capabilities
 			</h2>
 			<p class="mb-6">
@@ -244,7 +245,7 @@
 		</section>
 
 		<section id="api-reference" class="section">
-			<h2 class="mb-4 text-3xl font-bold">API Reference</h2>
+			<h2 class="section-heading">API Reference</h2>
 			<p class="mb-6">Detailed reference for each MCP tool available in AnkiMCP:</p>
 
 			<div class="api-reference">
@@ -255,8 +256,8 @@
 					</p>
 					<div class="api-example">
 						<h4>Response Example:</h4>
-						<pre class="api-code"><code
-								>{`[
+						<CodeBlock language="JSON" label="list_decks">
+							{`[
   {
     "id": 1234567890,
     "name": "Japanese::Vocabulary",
@@ -264,8 +265,8 @@
     "reviewCount": 12,
     "totalCount": 892
   }
-]`}</code
-							></pre>
+]`}
+						</CodeBlock>
 					</div>
 				</div>
 
@@ -283,8 +284,8 @@
 					</div>
 					<div class="api-example">
 						<h4>Response Example:</h4>
-						<pre class="api-code"><code
-								>{`[
+						<CodeBlock language="JSON" label="search_notes">
+							{`[
   {
     "noteId": 1234567890,
     "fields": {
@@ -294,8 +295,8 @@
     "tags": ["vocabulary", "greetings"],
     "modelName": "Basic"
   }
-]`}</code
-							></pre>
+]`}
+						</CodeBlock>
 					</div>
 				</div>
 
@@ -316,8 +317,8 @@
 		</section>
 
 		<section id="security" class="section">
-			<h2 class="mb-4 text-3xl font-bold">
-				<Shield class="mr-2 inline h-7 w-7" />
+			<h2 class="section-heading">
+				<Shield class="section-heading-icon" />
 				Security & Permissions
 			</h2>
 			<p class="mb-6">
@@ -338,8 +339,8 @@
 				<div class="security-feature">
 					<h3 class="mb-2 text-lg font-semibold">Deck-Specific Controls</h3>
 					<p class="mb-3">Override permissions for individual decks:</p>
-					<pre class="security-code"><code
-							>{`"deck_permissions": {
+					<CodeBlock language="JSON" label="deck_permissions" allowCopy={false}>
+						{`"deck_permissions": {
   "PersonalDiary": {
     "read": false,    // Completely hidden
     "write": false,
@@ -350,20 +351,20 @@
     "write": false,
     "delete": false
   }
-}`}</code
-						></pre>
+}`}
+					</CodeBlock>
 				</div>
 
 				<div class="security-feature">
 					<h3 class="mb-2 text-lg font-semibold">Protected Decks</h3>
 					<p class="mb-3">Add an extra layer of protection against accidental deletion:</p>
-					<pre class="security-code"><code
-							>"protected_decks": [
+					<CodeBlock language="JSON" label="protected_decks" allowCopy={false}>
+						{`"protected_decks": [
   "MedicalSchool",
   "PhD Research",
   "CertificationExam"
-]</code
-						></pre>
+]`}
+					</CodeBlock>
 					<p class="text-sm text-gray-600">
 						Protected decks cannot be deleted even if delete permissions are enabled.
 					</p>
@@ -372,7 +373,7 @@
 		</section>
 
 		<section id="troubleshooting" class="section">
-			<h2 class="mb-4 text-3xl font-bold">Troubleshooting</h2>
+			<h2 class="section-heading">Troubleshooting</h2>
 
 			<div class="troubleshooting-guide">
 				<div class="issue">
@@ -438,181 +439,262 @@
 
 <style>
 	.docs-container {
+		--docs-surface: color-mix(in srgb, var(--color-bg-2) 95%, transparent);
+		--docs-surface-elevated: color-mix(in srgb, var(--color-bg-2) 88%, var(--color-bg-1) 12%);
+		--docs-code-surface: color-mix(in srgb, var(--color-bg-2) 80%, #000 20%);
+		--docs-border: color-mix(in srgb, var(--color-text) 12%, transparent);
+		--docs-border-strong: color-mix(in srgb, var(--color-text) 16%, transparent);
+		--docs-muted: color-mix(in srgb, var(--color-text) 70%, transparent);
+		--code-surface: color-mix(in srgb, var(--docs-surface) 96%, transparent);
+		--code-border: var(--docs-border-strong);
+		--code-header: color-mix(in srgb, var(--docs-surface-elevated) 94%, transparent);
+		--code-accent: var(--color-theme-1);
 		display: grid;
-		grid-template-columns: 250px 1fr;
-		min-height: 100vh;
+		grid-template-columns: minmax(0, 260px) 1fr;
 		gap: 2rem;
-		max-width: 1400px;
+		max-width: 1200px;
 		margin: 0 auto;
-		padding: 2rem;
+		padding: 2rem 2rem 4rem;
+	}
+
+	:global([data-theme='dark']) .docs-container {
+		--docs-surface: color-mix(in srgb, var(--color-bg-2) 88%, #000 12%);
+		--docs-surface-elevated: color-mix(in srgb, var(--color-bg-1) 88%, #000 12%);
+		--docs-code-surface: color-mix(in srgb, var(--color-bg-1) 78%, #000 22%);
+		--docs-border: color-mix(in srgb, var(--color-text) 18%, transparent);
+		--docs-border-strong: color-mix(in srgb, var(--color-text) 24%, transparent);
+		--docs-muted: color-mix(in srgb, var(--color-text) 65%, transparent);
+		--code-surface: color-mix(in srgb, var(--docs-surface) 90%, #000 10%);
+		--code-border: color-mix(in srgb, var(--color-text) 28%, transparent);
+		--code-header: color-mix(in srgb, var(--docs-surface-elevated) 88%, #000 12%);
+		--code-accent: color-mix(in srgb, var(--color-theme-2) 60%, var(--color-theme-1));
 	}
 
 	.docs-nav {
 		position: sticky;
-		top: 2rem;
-		height: fit-content;
-		background: var(--color-bg-1);
+		top: 5.5rem;
+		align-self: start;
+		background: var(--docs-surface-elevated);
+		border: 1px solid var(--docs-border);
+		border-radius: 0.875rem;
 		padding: 1.5rem;
-		border-radius: 0.75rem;
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		box-shadow: 0 18px 45px color-mix(in srgb, #000 12%, transparent);
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	:global([data-theme='dark']) .docs-nav {
+		box-shadow: 0 18px 45px color-mix(in srgb, #000 32%, transparent);
+	}
+
+	.docs-nav-title {
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: color-mix(in srgb, var(--color-text) 94%, transparent);
+		margin: 0;
+		line-height: 1.25;
+		text-wrap: balance;
+		overflow-wrap: anywhere;
 	}
 
 	.back-link {
-		display: flex;
+		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
-		color: #6b7280;
+		color: var(--docs-muted);
 		text-decoration: none;
-		margin-bottom: 1rem;
 		font-size: 0.875rem;
+		font-weight: 600;
+		transition: color 0.2s ease;
 	}
 
 	.back-link:hover {
-		color: #374151;
+		color: var(--color-theme-1);
 	}
 
 	.nav-list {
 		list-style: none;
 		padding: 0;
 		margin: 0;
-	}
-
-	.nav-list li {
-		margin-bottom: 0.5rem;
+		display: grid;
+		gap: 0.35rem;
 	}
 
 	.nav-list a {
-		color: #6b7280;
+		color: var(--docs-muted);
 		text-decoration: none;
-		padding: 0.25rem 0;
+		padding: 0.35rem 0.5rem;
 		display: block;
-		border-radius: 0.25rem;
-		transition: color 0.2s;
+		border-radius: 0.5rem;
+		font-weight: 600;
+		transition:
+			color 0.2s ease,
+			background 0.2s ease;
 	}
 
-	.nav-list a:hover {
-		color: #3b82f6;
+	.nav-list a:hover,
+	.nav-list a:focus-visible {
+		color: var(--color-theme-1);
+		background: color-mix(in srgb, var(--color-theme-2) 18%, transparent);
 	}
 
 	.docs-content {
-		max-width: none;
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
 	}
 
 	.section {
-		margin-bottom: 3rem;
-		padding-bottom: 2rem;
-		border-bottom: 1px solid #e5e7eb;
+		margin-bottom: 0;
+		padding-bottom: 2.5rem;
+		border-bottom: 1px solid var(--docs-border);
+		scroll-margin-top: 6.75rem;
 	}
 
 	.section:last-child {
 		border-bottom: none;
 	}
 
-	.feature-comparison {
-		background: var(--color-bg-1);
+	.section-heading {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		font-size: clamp(1.9rem, 2vw + 1.3rem, 2.4rem);
+		font-weight: 700;
+		margin: 0 0 1.75rem 0;
+		letter-spacing: -0.01em;
+		color: color-mix(in srgb, var(--color-text) 92%, var(--color-theme-1) 8%);
+	}
+
+	.section-heading::after {
+		content: '';
+		flex: 1;
+		height: 2px;
+		background: linear-gradient(
+			to right,
+			color-mix(in srgb, var(--color-theme-1) 55%, transparent),
+			transparent
+		);
+		border-radius: 999px;
+		margin-left: 1rem;
+		min-width: 3rem;
+	}
+
+	.section-heading-icon {
+		width: 1.85rem;
+		height: 1.85rem;
+		flex-shrink: 0;
+		color: var(--color-theme-1);
+	}
+
+	.security-features {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	}
+
+	.feature-comparison,
+	.method-card,
+	.host-config,
+	.capability-card,
+	.api-method,
+	.security-feature,
+	.help-section {
+		background: var(--docs-surface);
+		border: 1px solid var(--docs-border);
+		border-radius: 0.9rem;
 		padding: 1.5rem;
-		border-radius: 0.75rem;
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		box-shadow: 0 18px 38px color-mix(in srgb, #000 10%, transparent);
 	}
 
 	.comparison-card {
-		background: var(--color-bg-2);
+		background: var(--docs-surface-elevated);
+		border: 1px solid var(--docs-border);
+		border-radius: 0.75rem;
 		padding: 1.5rem;
-		border-radius: 0.5rem;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
 	}
 
 	.installation-methods {
 		display: grid;
 		gap: 1.5rem;
-	}
-
-	.method-card {
-		background: var(--color-bg-1);
-		padding: 1.5rem;
-		border-radius: 0.75rem;
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 	}
 
 	.addon-code {
-		background: #3b82f6;
-		color: white;
-		padding: 0.25rem 0.5rem;
-		border-radius: 0.25rem;
+		background: color-mix(in srgb, var(--color-theme-2) 16%, var(--docs-surface));
+		color: color-mix(in srgb, var(--color-theme-2) 70%, white);
+		padding: 0.35rem 0.75rem;
+		border-radius: 0.5rem;
 		font-weight: 600;
+		letter-spacing: 0.02em;
 	}
 
 	.note {
-		background: #fef3c7;
-		border: 1px solid #f59e0b;
-		padding: 1rem;
-		border-radius: 0.5rem;
-		margin-top: 1rem;
+		background: color-mix(in srgb, #fbbf24 18%, var(--docs-surface));
+		border: 1px solid color-mix(in srgb, #f59e0b 40%, var(--docs-border));
+		padding: 1rem 1.25rem;
+		border-radius: 0.75rem;
 	}
 
 	.config-section {
-		margin-bottom: 2rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
 	}
 
-	.config-example,
-	.config-code {
-		background: #1f2937;
-		color: #f9fafb;
-		padding: 1rem;
-		border-radius: 0.5rem;
-		overflow-x: auto;
-		font-family: 'Courier New', monospace;
-		font-size: 0.875rem;
+	.config-section + .config-section {
+		margin-top: 2.5rem;
+	}
+
+	.config-example {
+		background: var(--docs-surface-elevated);
+		border: 1px solid var(--docs-border);
+		border-radius: 0.75rem;
+		padding: 1.25rem;
 	}
 
 	.host-configs {
 		display: grid;
-		gap: 1rem;
-	}
-
-	.host-config {
-		background: #f9fafb;
-		padding: 1rem;
-		border-radius: 0.5rem;
-		border: 1px solid #e5e7eb;
+		gap: 1.25rem;
 	}
 
 	.capabilities-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 		gap: 1.5rem;
+		grid-template-columns: minmax(0, 1fr);
 	}
 
 	.capability-card {
-		background: white;
-		padding: 1.5rem;
-		border-radius: 0.75rem;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-		border: 1px solid #e5e7eb;
+		box-shadow: 0 20px 45px color-mix(in srgb, #000 8%, transparent);
 	}
 
 	.capability-list {
 		list-style: none;
 		padding: 0;
 		margin: 0;
+		display: grid;
+		gap: 0.75rem;
 	}
 
 	.capability-list li {
-		padding: 0.5rem 0;
-		border-bottom: 1px solid #f3f4f6;
-		font-size: 0.875rem;
+		font-size: 0.95rem;
+		border-bottom: 1px solid var(--docs-border);
+		padding-bottom: 0.75rem;
 	}
 
 	.capability-list li:last-child {
 		border-bottom: none;
+		padding-bottom: 0;
 	}
 
 	.capability-list code {
-		background: #e5e7eb;
-		padding: 0.125rem 0.375rem;
-		border-radius: 0.25rem;
-		font-size: 0.75rem;
+		background: color-mix(in srgb, var(--color-theme-2) 14%, transparent);
+		color: color-mix(in srgb, var(--color-theme-2) 70%, var(--color-text));
+		padding: 0.15rem 0.45rem;
+		border-radius: 999px;
 		font-weight: 600;
 	}
 
@@ -621,23 +703,16 @@
 		gap: 2rem;
 	}
 
-	.api-method {
-		background: #f9fafb;
-		padding: 1.5rem;
-		border-radius: 0.75rem;
-		border: 1px solid #e5e7eb;
-	}
-
 	.api-method-name {
-		font-family: 'Courier New', monospace;
+		font-family: var(--font-mono);
 		font-size: 1.25rem;
-		font-weight: bold;
-		color: #3b82f6;
+		font-weight: 700;
+		color: var(--color-theme-1);
 		margin-bottom: 0.5rem;
 	}
 
 	.api-description {
-		color: #6b7280;
+		color: var(--docs-muted);
 		margin-bottom: 1rem;
 	}
 
@@ -645,50 +720,21 @@
 	.api-example h4 {
 		font-weight: 600;
 		margin-bottom: 0.5rem;
-		font-size: 0.875rem;
+		font-size: 0.9rem;
+		color: color-mix(in srgb, var(--color-text) 78%, transparent);
 	}
 
 	.api-parameters ul {
 		list-style: none;
 		padding: 0;
-		margin-bottom: 1rem;
+		margin: 0 0 1rem 0;
+		display: grid;
+		gap: 0.5rem;
 	}
 
 	.api-parameters li {
-		padding: 0.25rem 0;
-		font-size: 0.875rem;
-	}
-
-	.api-code {
-		background: #1f2937;
-		color: #f9fafb;
-		padding: 1rem;
-		border-radius: 0.5rem;
-		overflow-x: auto;
-		font-family: 'Courier New', monospace;
-		font-size: 0.75rem;
-	}
-
-	.security-features {
-		display: grid;
-		gap: 1.5rem;
-	}
-
-	.security-feature {
-		background: #f9fafb;
-		padding: 1.5rem;
-		border-radius: 0.75rem;
-		border: 1px solid #e5e7eb;
-	}
-
-	.security-code {
-		background: #1f2937;
-		color: #f9fafb;
-		padding: 1rem;
-		border-radius: 0.5rem;
-		font-family: 'Courier New', monospace;
-		font-size: 0.75rem;
-		margin: 0.5rem 0;
+		font-size: 0.95rem;
+		color: var(--docs-muted);
 	}
 
 	.troubleshooting-guide {
@@ -697,64 +743,101 @@
 	}
 
 	.issue {
-		background: #fef2f2;
-		border: 1px solid #fecaca;
-		border-radius: 0.75rem;
+		border: 1px solid color-mix(in srgb, #ef4444 35%, var(--docs-border));
+		border-radius: 0.9rem;
+		background: color-mix(in srgb, #ef4444 10%, var(--docs-surface));
 		overflow: hidden;
 	}
 
 	.issue-title {
-		background: #fee2e2;
+		background: color-mix(in srgb, #ef4444 14%, var(--docs-surface-elevated));
 		padding: 1rem 1.5rem;
 		margin: 0;
-		font-size: 1.125rem;
+		font-size: 1.1rem;
 		font-weight: 600;
-		color: #dc2626;
+		color: color-mix(in srgb, #ef4444 70%, var(--color-text));
+		border-bottom: 1px solid color-mix(in srgb, #ef4444 25%, var(--docs-border));
 	}
 
 	.issue-content {
-		padding: 1.5rem;
+		padding: 1.25rem 1.5rem 1.5rem;
+		display: grid;
+		gap: 0.75rem;
 	}
 
 	.help-section {
-		background: #eff6ff;
-		border: 1px solid #bfdbfe;
-		padding: 1.5rem;
-		border-radius: 0.75rem;
-		margin-top: 1.5rem;
+		background: color-mix(in srgb, var(--color-theme-2) 12%, var(--docs-surface));
+		border: 1px solid color-mix(in srgb, var(--color-theme-2) 30%, var(--docs-border));
+		margin-top: 1.75rem;
 	}
 
 	.link {
-		color: #3b82f6;
+		color: var(--color-theme-1);
 		text-decoration: none;
+		font-weight: 600;
 	}
 
-	.link:hover {
+	.link:hover,
+	.link:focus-visible {
 		text-decoration: underline;
 	}
 
 	code {
-		background: #e5e7eb;
-		padding: 0.125rem 0.375rem;
-		border-radius: 0.25rem;
-		font-family: 'Courier New', monospace;
-		font-size: 0.875em;
+		background: color-mix(in srgb, var(--color-bg-2) 80%, transparent);
+		padding: 0.15rem 0.45rem;
+		border-radius: 0.5rem;
+		font-family: var(--font-mono);
+		font-size: 0.9em;
 	}
 
-	@media (max-width: 768px) {
+	@media (min-width: 900px) {
+		.capabilities-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 1100px) {
+		.docs-container {
+			grid-template-columns: minmax(0, 220px) 1fr;
+		}
+	}
+
+	@media (max-width: 900px) {
 		.docs-container {
 			grid-template-columns: 1fr;
-			gap: 1rem;
-			padding: 1rem;
+			padding: 1.75rem 1.25rem 3rem;
+			gap: 1.5rem;
 		}
 
 		.docs-nav {
 			position: relative;
-			top: auto;
+			top: 0;
+			display: flex;
+			flex-direction: column;
+			gap: 1.25rem;
+			box-shadow: 0 12px 26px color-mix(in srgb, #000 12%, transparent);
+		}
+	}
+
+	@media (max-width: 640px) {
+		.docs-container {
+			padding: 1.25rem 1rem 2.5rem;
 		}
 
-		.capabilities-grid {
+		.capabilities-grid,
+		.installation-methods {
 			grid-template-columns: 1fr;
+		}
+
+		.section-heading {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.5rem;
+		}
+
+		.section-heading::after {
+			margin-left: 0;
+			width: 100%;
 		}
 	}
 </style>

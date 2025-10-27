@@ -58,23 +58,25 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 1rem 2rem;
-		background: var(--color-bg-2);
-		border-bottom: 1px solid #e5e7eb;
+		background: color-mix(in srgb, var(--color-bg-2) 92%, transparent);
+		border-bottom: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
 		position: sticky;
 		top: 0;
 		z-index: 50;
 		transition: all 0.2s;
+		backdrop-filter: blur(6px);
 	}
 
 	:global([data-theme='dark']) header {
-		border-bottom-color: #374151;
+		background: color-mix(in srgb, var(--color-bg-2) 86%, #000 14%);
+		border-bottom-color: color-mix(in srgb, var(--color-text) 18%, transparent);
 	}
 
 	.logo h1 {
 		margin: 0;
 		font-size: 1.5rem;
 		font-weight: bold;
-		color: #3b82f6;
+		color: var(--color-theme-1);
 	}
 
 	.logo-link {
@@ -82,7 +84,7 @@
 	}
 
 	.logo-link:hover h1 {
-		color: #2563eb;
+		color: color-mix(in srgb, var(--color-theme-1) 80%, var(--color-theme-2));
 	}
 
 	nav ul {
@@ -95,7 +97,7 @@
 
 	nav a {
 		text-decoration: none;
-		color: #6b7280;
+		color: color-mix(in srgb, var(--color-text) 65%, transparent);
 		font-weight: 500;
 		padding: 0.5rem 1rem;
 		border-radius: 0.375rem;
@@ -103,13 +105,13 @@
 	}
 
 	nav a:hover {
-		color: #3b82f6;
-		background: #f3f4f6;
+		color: var(--color-theme-1);
+		background: color-mix(in srgb, var(--color-theme-2) 16%, transparent);
 	}
 
 	nav .active a {
-		color: #3b82f6;
-		background: #eff6ff;
+		color: var(--color-theme-1);
+		background: color-mix(in srgb, var(--color-theme-1) 18%, transparent);
 	}
 
 	.header-actions {
@@ -124,29 +126,30 @@
 		justify-content: center;
 		width: 2.25rem;
 		height: 2.25rem;
-		background: transparent;
-		border: 1px solid #e5e7eb;
+		background: color-mix(in srgb, var(--color-bg-2) 92%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
 		border-radius: 0.375rem;
-		color: #6b7280;
+		color: color-mix(in srgb, var(--color-text) 70%, transparent);
 		cursor: pointer;
 		transition: all 0.2s;
 	}
 
 	.theme-toggle:hover {
-		background: #f3f4f6;
-		color: #374151;
-		border-color: #d1d5db;
+		background: color-mix(in srgb, var(--color-theme-2) 20%, transparent);
+		color: var(--color-theme-1);
+		border-color: color-mix(in srgb, var(--color-theme-2) 28%, transparent);
 	}
 
 	:global([data-theme='dark']) .theme-toggle {
-		border-color: #4b5563;
-		color: #d1d5db;
+		background: color-mix(in srgb, var(--color-bg-2) 86%, #000 14%);
+		border-color: color-mix(in srgb, var(--color-text) 18%, transparent);
+		color: color-mix(in srgb, var(--color-text) 75%, transparent);
 	}
 
 	:global([data-theme='dark']) .theme-toggle:hover {
-		background: #374151;
-		color: #f9fafb;
-		border-color: #6b7280;
+		background: color-mix(in srgb, var(--color-theme-2) 24%, transparent);
+		color: var(--color-theme-2);
+		border-color: color-mix(in srgb, var(--color-theme-2) 32%, transparent);
 	}
 
 	.github-btn {
@@ -154,17 +157,21 @@
 		align-items: center;
 		gap: 0.5rem;
 		padding: 0.5rem 1rem;
-		background: #1f2937;
+		background: var(--color-theme-1);
 		color: white;
 		text-decoration: none;
 		border-radius: 0.375rem;
 		font-weight: 500;
 		font-size: 0.875rem;
-		transition: background 0.2s;
+		transition:
+			background 0.2s,
+			transform 0.2s;
+		box-shadow: 0 10px 25px color-mix(in srgb, var(--color-theme-1) 25%, transparent);
 	}
 
 	.github-btn:hover {
-		background: #374151;
+		background: color-mix(in srgb, var(--color-theme-1) 80%, var(--color-theme-2));
+		transform: translateY(-1px);
 	}
 
 	@media (max-width: 768px) {
