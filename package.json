@@ -13,7 +13,9 @@
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run",
 		"format": "prettier --write .",
-		"lint": "prettier --check . && eslint ."
+		"format:check": "prettier --check .",
+		"lint": "prettier --check . && eslint .",
+		"quality:ci": "npm run format:check && npm run build && npm run lint && npm run check && npm run test"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
