@@ -72,9 +72,9 @@
 						<h4 class="mb-2 font-semibold">Option A: From AnkiWeb</h4>
 						<ol class="list-inside list-decimal space-y-2">
 							<li>In Anki, go to <code>Tools → Add-ons → Get Add-ons...</code></li>
-							<li>
-								Enter code: <code class="rounded bg-gray-200 px-2 py-1 font-mono">XXXXXXXXX</code>
-							</li>
+                                                        <li>
+                                                                Enter code: <code class="rounded bg-gray-200 px-2 py-1 font-mono">1513864660</code>
+                                                        </li>
 							<li>Click OK and restart Anki</li>
 						</ol>
 					</div>
