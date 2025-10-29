@@ -72,15 +72,18 @@
 					<h3 class="mb-3 text-xl font-semibold">Method 1: AnkiWeb (Recommended)</h3>
 					<ol class="mb-4 list-inside list-decimal space-y-2">
 						<li>Open Anki and go to <code>Tools → Add-ons → Get Add-ons...</code></li>
-                                                <li>Enter the addon code: <code class="addon-code">1513864660</code></li>
+						<li>Enter the addon code: <code class="addon-code">1513864660</code></li>
 						<li>Click OK and restart Anki</li>
 						<li>The MCP server will start automatically when you open a profile</li>
 					</ol>
-                                        <div class="note">
-                                                <p>
-                                                        <strong>Tip:</strong> You can also browse the addon listing at <a href="https://ankiweb.net/shared/info/1513864660" class="link">ankiweb.net/shared/info/1513864660</a> to verify the code before installing.
-                                                </p>
-                                        </div>
+					<div class="note">
+						<p>
+							<strong>Tip:</strong> You can also browse the addon listing at
+							<a href="https://ankiweb.net/shared/info/1513864660" class="link"
+								>ankiweb.net/shared/info/1513864660</a
+							> to verify the code before installing.
+						</p>
+					</div>
 				</div>
 
 				<div class="method-card">
